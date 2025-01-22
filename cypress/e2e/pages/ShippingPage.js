@@ -10,9 +10,12 @@ const phoneNumberInput = 'input[name="telephone"]';
 const shippingMethodFlatRate = 'tr:contains("Flat Rate")';
 const shippingMethodBestWay = 'tr:contains("Best Way")';
 const nextButton = 'button[data-role="opc-continue"]';
+const itemsInCartLabel = 'span[data-bind="text: getCartSummaryItemsCount()"]';
+const emailErrorLabel = 'div[id="customer-email-error"]';
+const requiredFieldsErrorList = "span:contains('This is a required field.')";
 
 class ShippingPage {
-  static shippingFormDisplayed() {
+  static shippingFormDisplayed(amountOfItems) {
     cy.get(emailAddressInput).should("be.visible");
     cy.get(firstNameInput).should("be.visible");
     cy.get(lastNameInput).should("be.visible");
@@ -27,9 +30,17 @@ class ShippingPage {
     cy.get(shippingMethodBestWay).should("be.visible");
 
     cy.get(nextButton).should("be.visible");
+    // cy.get(itemsInCartLabel).eq(0).should("have.value", amountOfItems + " Item in Cart");
+
+    cy.get(itemsInCartLabel)
+      .should("be.visible")
+      .invoke("text")
+      .then((text) => {
+        expect(text.trim()).to.equals(amountOfItems.toString(10));
+      });
   }
 
-  static shippingFormFillOut(userCredentials, shippingMethod) {
+  static shippingFormFillOut(userCredentials) {
     cy.get(emailAddressInput)
       .type(userCredentials.email)
       .should("have.value", userCredentials.email);
@@ -60,6 +71,9 @@ class ShippingPage {
       .type(userCredentials.phone)
       .should("have.value", userCredentials.phone);
 
+  }
+
+  static setShippingMethod(shippingMethod) {
     if (shippingMethod === "Flat Rate") {
       cy.get(shippingMethodFlatRate)
         .click()
@@ -81,6 +95,24 @@ class ShippingPage {
 
   static proceedToReviewAndPayment() {
     cy.get(nextButton).should("be.visible").click();
+  }
+
+  static shippingMethodIsMissing() {
+    cy.contains(
+      "The shipping method is missing. Select the shipping method and try again."
+    ).should("be.visible");
+    cy.get(nextButton).should("be.visible");
+  }
+
+  static allRequiredInputsErrorsDisplayed() {
+
+    cy.get(emailErrorLabel)
+    .should("be.visible");
+
+    cy.get(requiredFieldsErrorList).should(
+      "have.length",
+      7
+    );
   }
 }
 export default ShippingPage;

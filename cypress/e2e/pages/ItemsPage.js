@@ -5,13 +5,9 @@ const itemName = 'a[class="product-item-link"]';
 
 class ItemsPage {
   static openCategory(category) {
-    // cy.intercept("GET", "**/pub/media/catalog/product/cache/*").as("getProducts");
-
     cy.get('li[class="item"] > a:contains("' + category + '")')
       .should("be.visible")
       .click();
-
-    // cy.wait("@getProducts");
   }
 
   static addItemFromListToCart(itemNumber) {
