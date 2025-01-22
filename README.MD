@@ -1,4 +1,4 @@
-Demo project of UI automation using Cypress + Cucumber 
+# Demo project of UI automation using Cypress + Cucumber 
 
 ## To reslove project dependencies
 npm install
