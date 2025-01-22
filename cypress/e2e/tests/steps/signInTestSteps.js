@@ -1,17 +1,6 @@
-import { Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
+import { Before, Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
 import HomePage from "../../pages/HomePage";
 import SignInPage from "../../pages/SignInPage";
-
-Cypress.on("uncaught:exception", (err, runnable) => {
-  // returning false here prevents Cypress from
-  // failing the test
-  return false;
-});
-
-beforeEach(() => {
-  // disable Cypress's default behavior of logging all XMLHttpRequests and fetches
-  cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
-});
 
 Given("I open the Sign In page", () => {
   cy.visit("/");

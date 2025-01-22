@@ -3,9 +3,6 @@ const itemSizeList = 'div[class="swatch-attribute-options clearfix"] div';
 const itemColorList = 'div[class="swatch-option color"]';
 const itemName = 'a[class="product-item-link"]';
 
-const cartWidgetDeleteItemModalConfirmButton =
-  'div[class="modal-inner-wrap"] button[class="action-primary action-accept"]';
-
 class ItemsPage {
   static openCategory(category) {
     // cy.intercept("GET", "**/pub/media/catalog/product/cache/*").as("getProducts");

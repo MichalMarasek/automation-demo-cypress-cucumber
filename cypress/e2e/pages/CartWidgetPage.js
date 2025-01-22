@@ -1,6 +1,4 @@
 const cartWidgetItemInputsList = 'input[class="item-qty cart-item-qty"]';
-const topsCategory = 'li[class="item"] > a:contains("Tops")';
-const itemsList = 'div[class="product-item-info"]';
 const cartItemsCounter = 'span[class="counter-number"]';
 const cartWidgetButton = 'a[class="action showcart"]';
 const cartWidgetCheckoutButton = "#top-cart-btn-checkout";

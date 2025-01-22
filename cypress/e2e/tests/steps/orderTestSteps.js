@@ -1,18 +1,7 @@
-import { Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
+import { Before, Given, When, Then, And } from "cypress-cucumber-preprocessor/steps";
 import ShippingPage from "../../pages/ShippingPage";
 import ReviewAndPaymentsPage from "../../pages/ReviewAndPaymentsPage";
 import OrderSuccessPage from "../../pages/OrderSuccessPage";
-
-Cypress.on("uncaught:exception", (err, runnable) => {
-  // returning false here prevents Cypress from
-  // failing the test
-  return false;
-});
-
-beforeEach(() => {
-  // disable Cypress's default behavior of logging all XMLHttpRequests and fetches
-  cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
-});
 
 Then("Shipping form should be displayed", () => {
   ShippingPage.shippingFormDisplayed();

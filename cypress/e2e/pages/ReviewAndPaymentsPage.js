@@ -4,7 +4,6 @@ const shipToDetails =
 const shippingMethodDiv =
   'div[class="ship-via"] div[class="shipping-information-content"]';
 const placeOrderButton = 'button[title="Place Order"]';
-
 const cartSubtotalPrice = 'tr[class="totals sub"] span[class="price"]';
 const cartShippingPrice =
   'tr[class="totals shipping excl"] span[class="price"]';

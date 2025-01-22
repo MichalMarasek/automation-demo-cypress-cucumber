@@ -7,7 +7,6 @@ const regionSelect = 'select[name="region_id"]';
 const postcodeInput = 'input[name="postcode"]';
 const countrySelect = 'select[name="country_id"]';
 const phoneNumberInput = 'input[name="telephone"]';
-
 const shippingMethodFlatRate = 'tr:contains("Flat Rate")';
 const shippingMethodBestWay = 'tr:contains("Best Way")';
 const nextButton = 'button[data-role="opc-continue"]';
