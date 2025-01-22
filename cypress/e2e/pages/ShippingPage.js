@@ -11,8 +11,7 @@ const shippingMethodFlatRate = 'tr:contains("Flat Rate")';
 const shippingMethodBestWay = 'tr:contains("Best Way")';
 const nextButton = 'button[data-role="opc-continue"]';
 const itemsInCartLabel = 'span[data-bind="text: getCartSummaryItemsCount()"]';
-const emailErrorLabel = 'div[id="customer-email-error"]';
-const requiredFieldsErrorList = "span:contains('This is a required field.')";
+const requiredFieldsErrorList = "//*[contains(text(),'This is a required field.')]";
 
 class ShippingPage {
   static shippingFormDisplayed(amountOfItems) {
@@ -30,7 +29,6 @@ class ShippingPage {
     cy.get(shippingMethodBestWay).should("be.visible");
 
     cy.get(nextButton).should("be.visible");
-    // cy.get(itemsInCartLabel).eq(0).should("have.value", amountOfItems + " Item in Cart");
 
     cy.get(itemsInCartLabel)
       .should("be.visible")
@@ -106,13 +104,13 @@ class ShippingPage {
 
   static allRequiredInputsErrorsDisplayed() {
 
-    cy.get(emailErrorLabel)
-    .should("be.visible");
-
-    cy.get(requiredFieldsErrorList).should(
+    cy.xpath(requiredFieldsErrorList)
+    .should(
       "have.length",
-      7
-    );
+      8
+    ).each(($el) => {
+      cy.wrap($el).should("be.visible");
+    });
   }
 }
 export default ShippingPage;
