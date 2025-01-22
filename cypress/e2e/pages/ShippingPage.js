@@ -12,6 +12,7 @@ const shippingMethodBestWay = 'tr:contains("Best Way")';
 const nextButton = 'button[data-role="opc-continue"]';
 const itemsInCartLabel = 'span[data-bind="text: getCartSummaryItemsCount()"]';
 const requiredFieldsErrorList = "//*[contains(text(),'This is a required field.')]";
+const radioInput = 'input[type="radio"]';
 
 class ShippingPage {
   static shippingFormDisplayed(amountOfItems) {
@@ -75,18 +76,18 @@ class ShippingPage {
     if (shippingMethod === "Flat Rate") {
       cy.get(shippingMethodFlatRate)
         .click()
-        .find('input[type="radio"]')
+        .find(radioInput)
         .should("be.checked");
       cy.get(shippingMethodBestWay)
-        .find('input[type="radio"]')
+      .find(radioInput)
         .should("not.be.checked");
     } else if (shippingMethod === "Best Way") {
       cy.get(shippingMethodBestWay)
         .click()
-        .find('input[type="radio"]')
+        .find(radioInput)
         .should("be.checked");
       cy.get(shippingMethodFlatRate)
-        .find('input[type="radio"]')
+      .find(radioInput)
         .should("not.be.checked");
     }
   }
